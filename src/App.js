@@ -24,11 +24,8 @@ export default function App() {
 
     const getPhotos = async () => {
         let apiURL = `https://api.unsplash.com/photos?`;
-        if (query) {
-            await setLoading(true);
-            await setPage(1);
+        if (query)
             apiURL = `https://api.unsplash.com/search/photos?query=${query}`;
-        }
         apiURL += `&page=${page}`;
         apiURL += `&client_id=${ACCESS_KEY}`;
 
@@ -45,15 +42,17 @@ export default function App() {
         setLoading(false);
     };
 
+    const handleFormSubmit = async e => {
+        e.preventDefault();
+        await setLoading(true);
+        await setPage(1);
+        getPhotos().then().catch();
+    };
+
     return (
         <div className="app">
             <h1>Welcome To infinit-im!</h1>
-            <form
-                onSubmit={e => {
-                    e.preventDefault();
-                    getPhotos().then().catch();
-                }}
-            >
+            <form onSubmit={handleFormSubmit}>
                 <input
                     type="text"
                     placeholder="Search Unsplash..."
@@ -79,7 +78,7 @@ export default function App() {
                         />
                     }
                 >
-                    <div className="image-grid">
+                    <div className="image-flex">
                         {images.map((image, index) => (
                             <a
                                 href={image.links?.html}

@@ -6,6 +6,7 @@
 
 .firebaserc
 firebase.json
+.firebase
 
 # dependencies
 /node_modules
