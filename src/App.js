@@ -47,7 +47,7 @@ export default function App() {
 
     return (
         <div className="app">
-            <h1>Unsplash Image Gallery!</h1>
+            <h1>Welcome To infinit-im!</h1>
             <form
                 onSubmit={e => {
                     e.preventDefault();
